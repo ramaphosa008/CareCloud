@@ -1,0 +1,51 @@
+{% extends 'starter-page.html' %}
+
+{% load static %}
+
+  {% block content %}
+
+      <h1 class="text-center">All Appointments</h1>
+
+      <table class="table table-secondary table-bordered table-hover">
+
+      <tr>
+          <th>Name</th>
+          <th>Email Address</th>
+          <th>Phone No.</th>
+          <th>Date and time</th>
+          <th>Department</th>
+          <th>Doctor</th>
+          <th>Message</th>
+          <th>Action</th>
+      </tr>
+
+      <!----Use of a FOR loop---->
+      {% for appointment in allappointments %}
+          
+          <tr>
+
+              <td>{{ appointment.name }}</td>
+              <td>{{ appointment.email }}</td>
+              <td>{{ appointment.phone }}</td>
+              <td>{{ appointment.datetime }}</td>
+              <td>{{ appointment.department }}</td>
+              <td>{{ appointment.doctor}}</td>
+              <td>{{ appointment.message }}</td>
+              <td>
+
+                  <a href="/edit/{{ appointment.id }}" class="btn btn-outline-dark">Edit</a>          <!---This is called the anchor tag --->
+
+                  <a href="/delete/{{ appointment.id }}" class="btn btn-outline-danger">Delete</a>
+
+                  <a href="{% url 'pay' %}" class="btn btn-success">Pay Via Mpesa</a>
+
+              </td>
+          
+          </tr>
+      
+      {% endfor %}
+
+
+      </table>
+
+  {% endblock %}
